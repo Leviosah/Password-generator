@@ -17,12 +17,87 @@
                         </div>
                     <div class="row" style="height: 30px"></div>
                     <div class="row" style="height: 100px ">
-                        <button type="button" style="float: " onclick="alert('Hello world!')">Click Me!</button>
+                        <div style="width:400px;">
+                        </div>
+                        <div class="w3-show-inline-block">
+                            <div class="w3-bar">
+                              <button class="ButtonEl" style="float: right; margin-right: 200px; position: -webkit-sticky; position: sticky">Copy Password</button>
+                              <button class="ButtonEl" style="float: left; margin-left: 200px; position: -webkit-sticky; position: sticky">Get Password</button>
+                            </div>
+                        </div>
+                        <!-- <button type="button" style="float: " onclick="alert('Hello world!')">Click Me!</button> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type = "text/javascript">
+    // Set vars
+
+    var pwdChars = getChars();
+    var confirmNum = confirm("Would you like numeric characters?");
+    var confirmSpecial = confirm("Would you like specracters?");
+    var confirmUpper = confirm("Would you like upper case characters?");
+    var confirmLower = confirm("Would you like lower case characters?");
+    var numberArray = [0,1,2,3,4,5,6,7,8,9];
+    //var letterArrayL = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    var letterStringLo = "abcdefghijklmnopqrstuvwxyz";
+    var letterStringUp = letterStringLo.toUpperCase();
+    var specialChars = " !\"#$%\&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+// character num select function
+
+function getPwd(){
+    while(true){   	  
+        let pwdChars = prompt("How many characters would you like the password to have? Please select between 8 and 128");
+        
+        if (pwdChars == null) {
+            // user hit cancel
+        		alert("Please input a number")
+        } else{
+        	  if (pwdChars.length<=0 || isNaN( pwdChars ) ) {
+                // user pressed OK, but input invalid or does not input anything
+                alert("Please input a number");
+            } else if (pwdChars < 8 || pwdChars > 128) {
+                alert("Please select a number between 8 and 128")
+            }
+            else {
+                // user typed something valid and hit OK
+                return parseInt(pwdChars);
+                return true;
+            }
+         }                    
+        }
+    while(true){
+        
+    }                     
+};
+
+  
+ 
+
+
+
+
+
+
+
+    //pwdChars = prompt("How many characters would you like the password to have? Please select between 8 and 128");
+
+    //if (typeof pwdChars === "string") {
+        //pwdChars = prompt("Please input a number");
+   // }
+    //else if (pwdChars < 8) {
+        //pwdChars = prompt("please input a number greater than 7");
+   // }
+  //  else if (pwdChars > 128) {
+       // pwdChars = prompt("please input a number less than 129");
+   // }}
+    //else {alert("thanks")}
+    
+
+
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,38 @@
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+
+    <script type = "text/javascript">
+function getInteger(){
+    while(true){   	  
+        let input = prompt("How many characters would you like the password to have? Please select between 8 and 128");
+        
+        if (input == null) {
+            // user hit cancel
+        		alert("Goodbye")
+            return true;
+        } else{
+        	  if (input.length<=0 || isNaN( input ) ) {
+                // user pressed OK, but input invalid or does not input anything
+                alert("Please input a number");
+            } else if (input < 8 || input > 128) {
+                alert("Please read the instructions")
+            }
+            else {
+                // user typed something valid and hit OK
+                return parseInt(input);
+            }
+         }                    
+        }                     
+}
+
+getInteger()
+</script>
+</body>
+</html>

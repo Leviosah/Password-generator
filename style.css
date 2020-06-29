@@ -1,0 +1,14 @@
+.ButtonEl {
+    position: absolute;
+    font-weight: bold;
+    bottom: 3vw;
+    right: -8vw;
+    -webkit-border-radius: .5vw;
+    line-height: 4.3vw;
+    color: white;
+    background-color: #778899;
+    width: 13%;
+    text-align: center;  
+    border: white 2px solid ;   
+    width: 15em 
+}

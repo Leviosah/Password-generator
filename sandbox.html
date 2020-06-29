@@ -1,0 +1,108 @@
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="container" style="border: 1px solid black; background-color:  #808080;">
+        <div class="container" style="border: 1px solid black; background-color:  #fcf5eb;">
+            <div class="row" style="height: 600px;">
+                <h1 class = "header" style="text-align: center">Password Generator</h1>
+                <div class="row" style="height: 400px; width: 80%; margin: auto; border: 3px solid black">
+                    <div class="row" style="height:100px"></div>
+                    <h2 class = "subheader" style="text-align: center">Generate a Password</h2>
+                        <div class="box" style="height: 100px; width: 70%; margin: auto; border: 1px dotted black">
+                        </div>
+                    <div class="row" style="height: 30px"></div>
+                    <div class="row" style="height: 100px ">
+                        <div style="width:400px;">
+                        </div>
+                        <div class="w3-show-inline-block">
+                            <div class="w3-bar">
+                              <button class="ButtonEl" style="float: right; margin-right: 200px; position: -webkit-sticky; position: sticky">Copy Password</button>
+                              <button class="ButtonEl" style="float: left; margin-left: 200px; position: -webkit-sticky; position: sticky">Get Password</button>
+                            </div>
+                        </div>
+                        <!-- <button type="button" style="float: " onclick="alert('Hello world!')">Click Me!</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type = "text/javascript">
+    
+
+    let input;
+while (input = prompt("Input number: ")) {
+  if (isNaN(input)) {
+    alert("Invalid input.");
+  } else {
+    return parseInt(input);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    var pwdChars;
+    
+    
+    var badInput = {
+      letter: typeof pwdChars === "string" || pwdChars === null,
+      tooFew: pwdChars < 8,
+      tooMany: pwdChars > 128,
+
+      letterAlert: function() {
+          alert("Input must be a number");   
+      },
+
+      tooFewAlert: function() {
+          alert("Must be greater than 7 characters");
+      },
+
+      tooManyAlert: function() {
+          alert("Must be less than 129 characters");
+      }
+    };
+
+    var numberArray = [0,1,2,3,4,5,6,7,8,9];
+    var letterArrayL = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    var letterArrayLo = "abcdefghijklmnopqrstuvwxyz";
+    var letterArrayUp = letterArrayLo.toUpperCase();
+    var specialChars = " !\"#$%\&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+function reWriteChar() {
+    console.log(pwdChars)
+}
+
+while (pwdChars !== null || typeof pwdChars === "string" || typeof pwdChars !== "number") {
+    pwdChars = parseInt(prompt("How many characters would you like your password to contain?"));
+
+    if (typeof pwdChars === "string") { 
+        pwdChars = prompt("Please input a number");
+    }
+    else if (pwdChars < 8) {
+        pwdChars = prompt("Must be greater than 7");
+    }
+    else if (pwdChars > 128) {
+        pwdChars = prompt("Must be less than 129");
+    }
+}    
+   
+    
+    var specialChars = confirm("Would you like special characters?");
+    var upperchars = confirm("Would you like uppercase characters?");
+    </script>
+</body>
+
+</html>
