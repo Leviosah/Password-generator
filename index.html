@@ -33,21 +33,23 @@
     </div>
     <script type = "text/javascript">
     // Set vars
-
-    var pwdChars = getChars();
-    var confirmNum = confirm("Would you like numeric characters?");
-    var confirmSpecial = confirm("Would you like specracters?");
-    var confirmUpper = confirm("Would you like upper case characters?");
-    var confirmLower = confirm("Would you like lower case characters?");
-    var numberArray = [0,1,2,3,4,5,6,7,8,9];
-    //var letterArrayL = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    var letterStringLo = "abcdefghijklmnopqrstuvwxyz";
-    var letterStringUp = letterStringLo.toUpperCase();
-    var specialChars = " !\"#$%\&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    var pwdChars = setVars();
+    var confirmNum;
+    var confirmSpecial;
+    var confirmUpper;
+    var confirmLower;
+    var validCrit;
+    numberArray = [0,1,2,3,4,5,6,7,8,9];
+    letterArrayLo = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    letterArrayUp = letterArrayLo.map(function(x){return x.toUpperCase()});
+    specialChars = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
+    //specialChars = " !\"#$%\&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    console.log(letterArrayUp);
 
 // character num select function
 
-function getPwd(){
+//function getPwd(){
+    function setVars(){
     while(true){   	  
         let pwdChars = prompt("How many characters would you like the password to have? Please select between 8 and 128");
         
@@ -68,10 +70,97 @@ function getPwd(){
             }
          }                    
         }
-    while(true){
-        
-    }                     
+    };
+
+function validateCrit() {
+    confirmNum = confirm("Would you like to have numeric characters?");
+    confirmSpecial = confirm("Would you like to have special characters?");
+    confirmUpper = confirm("Would you like to have uppercase characters?");
+    confirmLower = confirm("Would you like to have lowercase characters?");
+
+    if (confirmNum || confirmLower || confirmUpper || confirmSpecial) {
+        alert("Thanks for your input");
+    }
+    else if (!confirmNum && !confirmLower && !confirmUpper && !confirmSpecial) {
+        alert("Please input at least one criteria");
+        validateCrit();
+    }
 };
+validateCrit();
+
+
+        if (confirmNum && confirmLower && confirmUpper && confirmSpecial) {
+            validCrit = specialChars.concat(numberArray, letterArrayLo, letterArrayUp);
+        }
+        else if (confirmNum && confirmLower && confirmSpecial) {
+            validCrit = numberArray.concat(letterArrayLo, specialChars);
+        }
+        else if (confirmNum && confirmLower && confirmUpper) {
+            validCrit = numberArray.concat(letterArrayLo, letterArrayUp);
+        }
+        else if (confirmNum && confirmUpper && confirmSpecial) {
+            validCrit = numberArray.concat(letterArrayUp, specialChars);
+        }
+        else if (confirmLower && confirmUpper && confirmSpecial) {
+            validCrit = letterArrayLo.concat(letterArrayUp, specialChars);
+        }
+        else if (confirmNum && confirmUpper) {
+            validCrit = numberArray.concat(letterArrayUp);
+        }
+        else if (confirmNum && confirmLower) {
+            validCrit = numberArray.concat(letterArrayLo);
+        }
+        else if (confirmNum && confirmSpecial) {
+            validCrit = numberArray.concat(specialChars);
+        }
+        else if (confirmUpper && confirmLower) {
+            validCrit = letterArrayUp.concat(letterArrayLo);
+        }
+        else if (confirmUpper && confrimSpecial) {
+            validCrit = letterArrayUp.concat(specialChars);
+        }
+        else if (confirmLower && confirmSpecial) {
+            validCrit = letterArrayLo.concat(specialChars);
+        }
+        else if (confirmLower) {
+            validCrit = letterArrayLo;
+        }
+        else if (confirmUpper) {
+            validCrit = letterArrayUp;
+        }
+        else if (confirmNum) {
+            validCrit = numberArray;
+        }
+        else if (confirmSpecial) {
+            validCrit = specialChars;
+        };
+function pwdGen() {
+    var password;
+    for (var i = 0; i < pwdChars; i++) {
+        genPwd = validCrit[Math.floor(Math.random() * validCrit.length)];
+        password.push(genPwd);
+    }
+};
+pwdGen();
+
+
+//function genPwd() {
+   // var password = [];
+
+    //for (var i = 0; i < pwdChars; i++) {
+      //  var random = validCrit[]
+   // })
+//}
+//};     
+
+console.log(pwdChars);
+console.log(confirmLower);
+console.log(confirmUpper);
+console.log(confirmSpecial);
+console.log(confirmNum);
+console.log(validCrit);
+console.log(genPwd);
+console.log(passowrd);
 
   
  
