@@ -1,7 +1,6 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Password Generator</title>
     <link rel="stylesheet" href="style.css">
     </head>
@@ -13,7 +12,8 @@
                 <div class="row" style="height: 400px; width: 80%; margin: auto; border: 3px solid black">
                     <div class="row" style="height:100px"></div>
                     <h2 class = "subheader" style="text-align: center">Generate a Password</h2>
-                        <div class="box" style="height: 100px; width: 70%; margin: auto; border: 1px dotted black">
+                        <div id = "box" style="height: 100px; width: 70%; margin: auto; border: 1px dotted black">
+                            <h2 id = "Textbox" style="display: flex; align-items: center; justify-content: center"></h2>
                         </div>
                     <div class="row" style="height: 30px"></div>
                     <div class="row" style="height: 100px ">
@@ -21,8 +21,8 @@
                         </div>
                         <div class="w3-show-inline-block">
                             <div class="w3-bar">
-                              <button class="ButtonEl" style="float: right; margin-right: 200px; position: -webkit-sticky; position: sticky">Copy Password</button>
-                              <button class="ButtonEl" style="float: left; margin-left: 200px; position: -webkit-sticky; position: sticky">Get Password</button>
+                              <button onclick="copyPassword()" id ="Copy" style="float: right; margin-right: 200px; position: -webkit-sticky; position: sticky">Copy Password</button>
+                              <button id ="Generate" style="float: left; margin-left: 200px; position: -webkit-sticky; position: sticky">Get Password</button>
                             </div>
                         </div>
                         <!-- <button type="button" style="float: " onclick="alert('Hello world!')">Click Me!</button> -->
@@ -31,24 +31,35 @@
             </div>
         </div>
     </div>
+
+
     <script type = "text/javascript">
-    // Set vars
-    var pwdChars = setVars();
+    var gen = document.querySelector("#Generate");
+    var completedPwd = document.querySelector("#Textbox");
+    numberArray = [0,1,2,3,4,5,6,7,8,9];
+    letterArrayLo = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    letterArrayUp = letterArrayLo.map(function(x){return x.toUpperCase()});
+    specialChars = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
+    console.log(letterArrayUp);
+
+    gen.addEventListener("click", function(event) {
+        event.preventDefault();
+        var pwdOut = masterFunction();
+        console.log(pwdOut);
+        document.getElementById("Textbox").textContent = pwdOut;
+    });
+
+
+// Set Master Function to be exectuted on click event
+function masterFunction() {
     var confirmNum;
     var confirmSpecial;
     var confirmUpper;
     var confirmLower;
     var validCrit;
-    numberArray = [0,1,2,3,4,5,6,7,8,9];
-    letterArrayLo = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    letterArrayUp = letterArrayLo.map(function(x){return x.toUpperCase()});
-    specialChars = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
-    //specialChars = " !\"#$%\&'()*+,-./:;<=>?@[\\]^_`{|}~";
-    console.log(letterArrayUp);
 
-// character num select function
 
-//function getPwd(){
+// function to set number of characters
     function setVars(){
     while(true){   	  
         let pwdChars = prompt("How many characters would you like the password to have? Please select between 8 and 128");
@@ -72,6 +83,9 @@
         }
     };
 
+var pwdChars = setVars();
+
+// function to set and validate the criteria for password
 function validateCrit() {
     confirmNum = confirm("Would you like to have numeric characters?");
     confirmSpecial = confirm("Would you like to have special characters?");
@@ -88,7 +102,7 @@ function validateCrit() {
 };
 validateCrit();
 
-
+// concat the arrays according to selection
         if (confirmNum && confirmLower && confirmUpper && confirmSpecial) {
             validCrit = specialChars.concat(numberArray, letterArrayLo, letterArrayUp);
         }
@@ -134,55 +148,43 @@ validateCrit();
         else if (confirmSpecial) {
             validCrit = specialChars;
         };
+
+// randomizer to select and append characters to form password
 function pwdGen() {
-    var password;
+    var password = [];
     for (var i = 0; i < pwdChars; i++) {
-        genPwd = validCrit[Math.floor(Math.random() * validCrit.length)];
+        var genPwd = validCrit[Math.floor(Math.random() * validCrit.length)];
         password.push(genPwd);
     }
+    return password.join("");
 };
-pwdGen();
+
+abc = pwdGen();
+console.log("Password: "+abc);
 
 
-//function genPwd() {
-   // var password = [];
-
-    //for (var i = 0; i < pwdChars; i++) {
-      //  var random = validCrit[]
-   // })
-//}
-//};     
-
-console.log(pwdChars);
 console.log(confirmLower);
 console.log(confirmUpper);
 console.log(confirmSpecial);
 console.log(confirmNum);
 console.log(validCrit);
-console.log(genPwd);
-console.log(passowrd);
+return abc;
+}
+
+
+function copyPassword() {
+    var copyText = document.getElementById("TextBox");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+    alert("Copied passoword" + abc);
+}
+
+
+
 
   
- 
 
-
-
-
-
-
-
-    //pwdChars = prompt("How many characters would you like the password to have? Please select between 8 and 128");
-
-    //if (typeof pwdChars === "string") {
-        //pwdChars = prompt("Please input a number");
-   // }
-    //else if (pwdChars < 8) {
-        //pwdChars = prompt("please input a number greater than 7");
-   // }
-  //  else if (pwdChars > 128) {
-       // pwdChars = prompt("please input a number less than 129");
-   // }}
-    //else {alert("thanks")}
     
 
 
